@@ -393,3 +393,22 @@ body { min-height: 250vh; }
     transform: translateY(-2px);
 }
 .social-icons i { font-size: 1.7rem; }
+
+/* Besarin teks di kartu 'Kebutuhan Harian' */
+#new-stacking-section .stacking-product-info-detail h3{
+  font-size: clamp(28px, 3.2vw, 52px);  /* judul */
+  line-height: 1.1;
+}
+#new-stacking-section .stacking-product-info-detail p{
+  font-size: clamp(16px, 1.4vw, 22px);  /* deskripsi */
+}
+#new-stacking-section .stacking-product-info-detail li{
+  font-size: clamp(14px, 1.2vw, 18px);  /* bullet */
+}
+#new-stacking-section .stacking-product-price-grid .price-item span:first-child{
+  font-size: 12px;                       /* label kecil (Harga Konsumen/Agen, Poin) */
+}
+#new-stacking-section .stacking-product-price-grid .price-item span:last-child{
+  font-size: clamp(18px, 2.1vw, 28px);   /* angka harga/poin */
+  font-weight: 800;
+}
