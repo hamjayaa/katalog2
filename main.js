@@ -848,9 +848,9 @@ function setupNewStackingAnimation() {
         }
 
         slidesTL.to(slide, { opacity: 1, duration: 0.2 }, startTime)
-                .to(view, { y: "-8vh", scale: 0.75, duration: 0.2 }, startTime);
+                .to(view, { y: "-8vh", scale: 0.75, duration: 0.5 }, startTime);
 
-        slidesTL.to(view, { y: "-8vh", scale: 0.75, duration: 1.5 }, startTime + 0.2); 
+        slidesTL.to(view, { y: "-8vh", scale: 0.75, duration: 0.5 }, startTime + 0.2); 
 
         slidesTL.to(slide, { opacity: 0, duration: 0.2 }, startTime + 1.7) 
                 .to(view, { y: "-8vh", scale: 0.5, duration: 0.5, ease: "power1.in" }, startTime + 2); 
