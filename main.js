@@ -816,7 +816,7 @@ function setupNewStackingAnimation() {
     
     if (totalSlides === 0 || !section) return;
 
-    const scrollPerSlide = 2000; 
+    const scrollPerSlide = 1500; 
     const totalScrollHeight = totalSlides * scrollPerSlide;
 
     ScrollTrigger.create({
