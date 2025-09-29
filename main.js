@@ -864,7 +864,7 @@ function setupNewStackingAnimation() {
             }, null, startTime + 0.2);
             slidesTL.call(() => {
                 slide.classList.remove('is-active');
-            }, null, startTime + 1.9);
+            }, null, startTime + 1);
         }
     });
 }
