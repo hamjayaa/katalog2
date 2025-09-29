@@ -545,11 +545,11 @@ function createStackingSlideHTML(data, index) {
                     <div class="stacking-product-price-grid w-1/3">
                         <div class="price-item">
                             <span class="text-xs text-clean-subtext block">Harga Konsumen</span>
-                            <span class="text-xl font-bold text-clean-text">${data.consumerPrice}</span>
+                            <span class="text-lg font-bold text-clean-text">${data.consumerPrice}</span>
                         </div>
                         <div class="price-item">
                             <span class="text-xs text-clean-subtext block">Harga Agen</span>
-                            <span class="text-xl font-extrabold text-clean-text">${data.agentPrice}</span>
+                            <span class="text-lg font-extrabold text-clean-text">${data.agentPrice}</span>
                         </div>
                         <div class="price-item points">
                             <span class="text-xs text-clean-subtext block">Poin (PV)</span>
