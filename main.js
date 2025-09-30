@@ -27,9 +27,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 // --- 1. PRODUK HORIZONTAL SCROLL (Total 28 Item) ---
 // Perhatikan:
-// - price & agentPrice: format string angka saja (contoh: "95.000")
-// - mainBenefits: Array list manfaat (muncul di expanded view)
-// - composition & usage: Paragraf detail (muncul di expanded view)
+// - imgUrl: <--- TEMPAT ANDA MEMASUKKAN LINK GAMBAR LENGKAP (misal: Cloudinary/Web)
+// - imgText: Digunakan HANYA JIKA imgUrl kosong.
 
 const horizontalProductsData = [
     // PRODUK 1: MADU (WAJIB ADA)
@@ -40,7 +39,7 @@ const horizontalProductsData = [
         pv: "15", 
         description: "Madu asli dari hutan pilihan, dipanen dengan metode ramah lingkungan, kaya antioksidan.",
         imgText: "MADU+MURNI",
-        imgUrl: "https://res.cloudinary.com/doqzgozyt/image/upload/v1758630927/Gemini_Generated_Image_izwimyizwimyizwi_kvj0w3.png", 
+        imgUrl: "https://res.cloudinary.com/doqzgozyt/image/upload/v1758630927/Gemini_Generated_Image_izwimyizwimyizwi_kvj0w3.png", // <--- GANTI LINK INI
         mainBenefits: ["Meningkatkan daya tahan tubuh.", "Sumber energi alami non-gula.", "Antioksidan tinggi.", "Menjaga kesehatan pencernaan."],
         composition: "100% Madu Hutan Murni (tanpa campuran gula atau pemanis buatan). Jaminan Halal dan keaslian.",
         usage: "Minum 1 sendok makan setiap pagi dan malam. Dapat dicampur dengan air hangat atau teh herbal."
@@ -400,6 +399,8 @@ const horizontalProductsData = [
 
 
 // --- 2. PRODUK STICKY STACKING (Total 10 Item) ---
+// Note: Gunakan URL gambar di properti 'img'
+
 const stackingProductsData = [
     // SLIDE 1: DETERJEN
     { 
@@ -502,8 +503,8 @@ function createHorizontalCardHTML(data, index) {
         return priceString;
     };
     
-    // LOGIC GAMBAR DIPERBAIKI: Jika imgUrl ada, gunakan. Jika tidak, gunakan placeholder.
-    let imageUrl = data.imgUrl && data.imgUrl.startsWith('http') 
+    // LOGIC GAMBAR DIPERBAIKI: Jika imgUrl adalah URL valid, gunakan. Jika tidak, gunakan placeholder.
+    let imageUrl = (data.imgUrl && data.imgUrl.startsWith('http')) 
                    ? data.imgUrl 
                    : `https://via.placeholder.com/300x330/DDDDDD/666666?text=${data.imgText}`;
 
@@ -621,8 +622,6 @@ function generateStackingSlides() {
     
     container.innerHTML = html;
 }
-
-// === GSAP & UTILITIES ===
 
 function setupFloatingText() {
     const titleWrapper = document.querySelector("#heroTitleWrapper");
@@ -788,7 +787,9 @@ function setupCardScrolling() {
 
     window.updateArrows = function updateArrows(){
         const atStart = scrollContainer.scrollLeft <= 0;
-        const atEnd = scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth - 1;
+        // Perbaiki perhitungan atEnd agar lebih toleran
+        const atEnd = scrollContainer.scrollLeft >= (scrollContainer.scrollWidth - scrollContainer.clientWidth) - 5; 
+        
         prevBtn.classList.toggle('is-disabled', atStart);
         nextBtn.classList.toggle('is-disabled', atEnd);
         prevBtn.setAttribute('aria-disabled', String(atStart));
@@ -847,7 +848,7 @@ function setupNewStackingAnimation() {
     
     if (totalSlides === 0 || !section) return;
 
-    // Durasi scroll per slide diperpendek dari 2000 menjadi 1100 (stabil)
+    // Durasi scroll per slide yang sudah diuji stabil
     const scrollPerSlide = 1100; 
     const totalScrollHeight = totalSlides * scrollPerSlide;
 
@@ -879,21 +880,17 @@ function setupNewStackingAnimation() {
         const view = slide.querySelector('.stacking-product-card-view');
         const startTime = i * (scrollPerSlide / 1000); 
         
-        // Atur posisi awal (penting untuk slide pertama)
         if (i === 0) {
              gsap.set(view, { y: "100vh", scale: 1, borderRadius: "1.5rem" });
              gsap.set(slide, { opacity: 0 });
         }
 
-        // 1. Masuk: opacity 0 ke 1, y: 100vh ke -8vh (terlihat)
         slidesTL.to(slide, { opacity: 1, duration: 0.2 }, startTime)
                 .to(view, { y: "-8vh", scale: 0.75, duration: 0.5 }, startTime);
 
-        // 2. Jeda Tampil (Tahan di posisi)
         slidesTL.to(view, { y: "-8vh", scale: 0.75, duration: 0.5 }, startTime + 0.2); 
 
-        // 3. Keluar: opacity 1 ke 0, scale 0.75 ke 0.5
-        slidesTL.to(slide, { opacity: 0, duration: 0.2 }, startTime + 0.7) // Mulai fade out
+        slidesTL.to(slide, { opacity: 0, duration: 0.2 }, startTime + 0.7) // Mulai fade out lebih awal
                 .to(view, { scale: 0.5, duration: 0.5, ease: "power1.in" }, startTime + 0.9); 
 
         // Manage is-active class untuk pointer-events
@@ -906,7 +903,7 @@ function setupNewStackingAnimation() {
             }, null, startTime + 0.2);
             slidesTL.call(() => {
                 slide.classList.remove('is-active');
-            }, null, startTime + 1.1); // Hapus class active setelah transisi masuk slide berikutnya dimulai
+            }, null, startTime + 1.1); 
         }
     });
 
@@ -955,7 +952,6 @@ function setupTestimonialsCarousel() {
     function spotlight() {
         const v = visibleCount();
         const start = index * v;
-        // Gunakan v cards visible
         cards.forEach((el, i) => {
             const active = (i >= start && i < start + v);
             gsap.to(el, {
@@ -973,8 +969,6 @@ function setupTestimonialsCarousel() {
         index = Math.max(0, Math.min(max, i));
 
         const v = visibleCount();
-        
-        // Scroll berdasarkan offset card pertama di page yang baru
         const targetCard = cards[index * v];
         const scrollDistance = targetCard ? targetCard.offsetLeft - cards[0].offsetLeft : 0;
         
@@ -1043,16 +1037,16 @@ document.addEventListener('DOMContentLoaded', () => {
     generateHorizontalCards();
     generateStackingSlides();
 
-    // 2. Inisialisasi semua fungsi (memastikan GSAP dan DOM sudah siap)
+    // 2. Inisialisasi semua fungsi setelah konten dimuat
     setupFloatingText();
     setupHeroScrollAnimation();
     
-    // Inisialisasi ulang setelah konten horizontal dibuat
+    // Inisialisasi ulang fungsionalitas yang bergantung pada DOM baru
     setupCardScrolling(); 
-    setupCardExpansion();
+    setupCardExpansion(); 
     
     setupCtaAnimation(); 
-    setupNewStackingAnimation(); // Ini sekarang memanggil ScrollTrigger.refresh() di dalamnya
+    setupNewStackingAnimation(); 
     setupTestimonialsCarousel(); 
     
     // PENTING: Refresh semua ScrollTrigger LAGI setelah semua konten dan animasi dimuat
