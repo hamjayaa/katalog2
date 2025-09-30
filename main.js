@@ -40,7 +40,6 @@ const horizontalProductsData = [
         pv: "15", 
         description: "Madu asli dari hutan pilihan, dipanen dengan metode ramah lingkungan, kaya antioksidan.",
         imgText: "https://res.cloudinary.com/doqzgozyt/image/upload/v1758630927/Gemini_Generated_Image_izwimyizwimyizwi_kvj0w3.png",
-        imgUrl: "https://res.cloudinary.com/doqzgozyt/image/upload/v1758630927/Gemini_Generated_Image_izwimyizwimyizwi_kvj0w3.png",
         mainBenefits: ["Meningkatkan daya tahan tubuh.", "Sumber energi alami non-gula.", "Antioksidan tinggi.", "Menjaga kesehatan pencernaan."],
         composition: "100% Madu Hutan Murni (tanpa campuran gula atau pemanis buatan). Jaminan Halal dan keaslian.",
         usage: "Minum 1 sendok makan setiap pagi dan malam. Dapat dicampur dengan air hangat atau teh herbal."
