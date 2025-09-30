@@ -27,9 +27,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 // --- 1. PRODUK HORIZONTAL SCROLL (Total 28 Item) ---
 // Perhatikan:
-// - price & agentPrice: format string angka saja (contoh: "95.000")
-// - mainBenefits: Array list manfaat (muncul di expanded view)
-// - composition & usage: Paragraf detail (muncul di expanded view)
+// - imgText: Teks Placeholder Saja (Hanya digunakan jika imgUrl kosong)
+// - imgUrl: <--- INI TEMPAT ANDA MEMASUKKAN LINK GAMBAR LENGKAP ANDA!
 
 const horizontalProductsData = [
     // PRODUK 1: MADU
@@ -39,7 +38,8 @@ const horizontalProductsData = [
         agentPrice: "75.000", 
         pv: "15", 
         description: "Madu asli dari hutan pilihan, dipanen dengan metode ramah lingkungan, kaya antioksidan.",
-        imgUrl: "https://res.cloudinary.com/doqzgozyt/image/upload/v1758630927/Gemini_Generated_Image_izwimyizwimyizwi_kvj0w3.png",
+        imgText: "MADU+MURNI",
+        imgUrl: "https://res.cloudinary.com/doqzgozyt/image/upload/v1758630927/Gemini_Generated_Image_izwimyizwimyizwi_kvj0w3.png", // <--- Contoh link kustom
         mainBenefits: ["Meningkatkan daya tahan tubuh.", "Sumber energi alami non-gula.", "Antioksidan tinggi.", "Menjaga kesehatan pencernaan."],
         composition: "100% Madu Hutan Murni (tanpa campuran gula atau pemanis buatan). Jaminan Halal dan keaslian.",
         usage: "Minum 1 sendok makan setiap pagi dan malam. Dapat dicampur dengan air hangat atau teh herbal."
@@ -52,6 +52,7 @@ const horizontalProductsData = [
         pv: "40", 
         description: "Bahan Katun Jepang Premium, adem, jahitan rapi, desain elegan dan syar'i. Cocok untuk acara formal.", 
         imgText: "GAMIS+PREMIUM",
+        imgUrl: "https://via.placeholder.com/300x330/DDDDDD/666666?text=GAMIS+PREMIUM", // <--- Contoh link placeholder
         mainBenefits: ["Nyaman & Adem (Katun Jepang).", "Busui Friendly (Resleting Depan).", "Wudhu Friendly (Manset Kancing)."],
         composition: "Material: Katun Jepang Grade A. Jahitan kuat dan rapi standar butik. Tersedia 4 pilihan warna: Black, Navy, Maroon, Dusty Pink.",
         usage: "Cuci tangan atau mesin dengan mode lembut. Hindari pemutih kuat. Jemur di tempat teduh."
@@ -64,6 +65,7 @@ const horizontalProductsData = [
         pv: "7", 
         description: "Nugget ayam bersertifikasi Halal MUI, tanpa MSG, cocok untuk bekal anak-anak. Praktis dan lezat.", 
         imgText: "NUGGET+HALAL",
+        imgUrl: "", // <--- Kosong: akan menggunakan imgText sebagai placeholder
         mainBenefits: ["Tanpa MSG dan Pengawet Buatan.", "Tinggi protein hewani.", "Tekstur renyah di luar, lembut di dalam."],
         composition: "70% Daging Ayam Fillet, Tepung Roti Halal, Bumbu Rempah Alami. BPOM RI MD 245009001018.",
         usage: "Goreng dalam minyak panas sedang selama 3-4 menit hingga cokelat keemasan. Simpan di freezer."
@@ -76,6 +78,7 @@ const horizontalProductsData = [
         pv: "20", 
         description: "Ekstrak jintan hitam murni dalam kapsul, membantu meningkatkan daya tahan tubuh dan vitalitas.", 
         imgText: "HABBATUSSAUDA",
+        imgUrl: "",
         mainBenefits: ["Mendukung sistem imun dan pernapasan.", "Meningkatkan energi dan vitalitas.", "Anti-inflamasi alami."],
         composition: "100% Minyak Jintan Hitam (Nigella Sativa) murni dalam kapsul Halal. Diproses Cold-Pressed.",
         usage: "2 kapsul, 2 kali sehari setelah makan. Konsumsi rutin untuk hasil maksimal."
@@ -88,6 +91,7 @@ const horizontalProductsData = [
         pv: "12", 
         description: "Biji kopi arabika pilihan dari pegunungan Jawa, diproses secara Halal, aroma kuat dan rasa seimbang.", 
         imgText: "KOPI+ARABIKA",
+        imgUrl: "",
         mainBenefits: ["Mengurangi risiko penyakit jantung.", "Meningkatkan fokus dan energi.", "Rendah asam lambung."],
         composition: "100% Biji Kopi Arabika Pilihan. Level Roast: Medium Dark. Aroma: Floral & Caramel.",
         usage: "Sajikan 1-2 sendok makan dengan air panas 200ml. Tambahkan pemanis alami sesuai selera."
@@ -100,6 +104,7 @@ const horizontalProductsData = [
         pv: "6", 
         description: "Sabun mandi herbal dengan ekstrak Daun Bidara, menenangkan kulit dan membantu masalah kulit sensitif.", 
         imgText: "SABUN+BIDARA",
+        imgUrl: "",
         mainBenefits: ["Menenangkan kulit gatal dan eksim.", "Aroma relaksasi alami.", "Formula lembut, tidak membuat kering."],
         composition: "Ekstrak Daun Bidara (Ziziphus mauritiana), Olive Oil, Minyak Kelapa. pH Balance.",
         usage: "Gunakan setiap mandi. Oleskan ke seluruh tubuh, busakan, lalu bilas hingga bersih."
@@ -112,6 +117,7 @@ const horizontalProductsData = [
         pv: "10", 
         description: "Jilbab instan bahan jersey premium, adem, tidak menerawang, cocok untuk aktivitas harian.", 
         imgText: "HIJAB+INSTAN",
+        imgUrl: "",
         mainBenefits: ["Sangat praktis (langsung pakai).", "Bahan tidak mudah kusut.", "Menutup dada sempurna."],
         composition: "Premium Jersey Korea (Tebal, stretch, tidak gerah). Finishing jahit tepi rapi.",
         usage: "Dapat digunakan tanpa peniti atau jarum pentul. Tersedia dalam 10 pilihan warna."
@@ -124,6 +130,7 @@ const horizontalProductsData = [
         pv: "25", 
         description: "Minyak zaitun murni kualitas terbaik, cold pressed, kaya omega 3 dan antioksidan.", 
         imgText: "ZAITUN+EVOO",
+        imgUrl: "",
         mainBenefits: ["Baik untuk kesehatan jantung.", "Membantu menurunkan kolesterol jahat.", "Dapat digunakan untuk memasak tanpa merusak nutrisi."],
         composition: "100% Extra Virgin Olive Oil. Cold Pressed. Acidity level < 0.5%.",
         usage: "Diminum 1 sendok makan setiap pagi atau sebagai dressing salad."
@@ -136,6 +143,7 @@ const horizontalProductsData = [
         pv: "18", 
         description: "Kurma Ajwa Madinah kualitas Super, lembut, manis alami, sumber serat dan energi.", 
         imgText: "KURMA+AJWA",
+        imgUrl: "",
         mainBenefits: ["Sumber energi cepat dan sehat.", "Tinggi serat, baik untuk pencernaan.", "Sesuai Sunnah."],
         composition: "Kurma Ajwa Pilihan Grade A. Dipacking dalam kemasan kedap udara.",
         usage: "Konsumsi 3-7 butir setiap hari, terutama saat sarapan."
@@ -148,6 +156,7 @@ const horizontalProductsData = [
         pv: "8", 
         description: "Sereal sarapan sehat dari gandum utuh, tinggi serat, rendah gula, cocok untuk diet.", 
         imgText: "SEREAL+SEHAT",
+        imgUrl: "",
         mainBenefits: ["Mengontrol nafsu makan.", "Membantu program diet sehat.", "Rendah indeks glikemik."],
         composition: "Gandum Utuh, Oat, Biji-bijian. Tanpa pewarna dan perasa buatan.",
         usage: "Campurkan 3 sendok sereal dengan susu hangat atau yogurt."
@@ -160,6 +169,7 @@ const horizontalProductsData = [
         pv: "30", 
         description: "Serum dengan konsentrat Propolis, melawan tanda penuaan, melembabkan dan mencerahkan kulit.", 
         imgText: "SERUM+PROPOLIS",
+        imgUrl: "",
         mainBenefits: ["Mengurangi garis halus dan kerutan.", "Mencerahkan kulit kusam.", "Memperbaiki tekstur kulit."],
         composition: "Propolis Extract, Niacinamide, Hyaluronic Acid. Paraben Free & Non-comedogenic.",
         usage: "Gunakan 3 tetes setelah toner, pijat lembut hingga meresap. Pagi dan malam hari."
@@ -172,6 +182,7 @@ const horizontalProductsData = [
         pv: "28", 
         description: "Kemeja koko casual, bahan katun adem, desain modern, tersedia ukuran M, L, XL.", 
         imgText: "KEMEJA+KOKO",
+        imgUrl: "",
         mainBenefits: ["Nyaman dipakai seharian.", "Desain timeless dan elegan.", "Mudah dicuci dan tidak cepat pudar."],
         composition: "100% Katun Linen Premium. Jahitan rapih. Standar ekspor.",
         usage: "Cocok untuk sholat, acara formal, atau kantor. Setrika dengan suhu sedang."
@@ -184,6 +195,7 @@ const horizontalProductsData = [
         pv: "9", 
         description: "Sajadah tipis dan ringan, mudah dilipat, cocok untuk dibawa bepergian atau umrah/haji.", 
         imgText: "SAJADAH+TRAVEL",
+        imgUrl: "",
         mainBenefits: ["Ultra-ringan dan ringkas.", "Anti-air dan mudah dibersihkan.", "Pouch kecil untuk dibawa."],
         composition: "Polyester Tahan Air, Busa Tipis. Ukuran Terbuka: 100x50 cm.",
         usage: "Selalu bawa untuk sholat di luar rumah. Lipat kembali setelah kering."
@@ -196,6 +208,7 @@ const horizontalProductsData = [
         pv: "11", 
         description: "Cuka apel murni tanpa pengawet, terbuat dari apel pilihan. Baik untuk pencernaan dan detoks.", 
         imgText: "CUKA+APEL",
+        imgUrl: "",
         mainBenefits: ["Membantu detoksifikasi tubuh.", "Menyeimbangkan pH alami.", "Mendukung penurunan berat badan."],
         composition: "100% Fermentasi Sari Apel. Mengandung 'Mother' cuka apel.",
         usage: "Campurkan 1 sendok teh dengan air 200ml, minum sebelum makan. Dapat ditambahkan madu."
@@ -208,6 +221,7 @@ const horizontalProductsData = [
         pv: "3", 
         description: "Tepung bumbu instan, bebas MSG, renyah maksimal, jaminan Halal untuk gorengan keluarga.", 
         imgText: "TEPUNG+BUMBU",
+        imgUrl: "",
         mainBenefits: ["Renyah tahan lama.", "Rasa gurih alami.", "Tanpa tambahan zat berbahaya."],
         composition: "Tepung Terigu, Tepung Beras, Bumbu Rempah Alami. Sertifikasi PIRT.",
         usage: "Campurkan dengan air, celupkan bahan, goreng hingga matang. Tidak perlu bumbu tambahan."
@@ -220,6 +234,7 @@ const horizontalProductsData = [
         pv: "5", 
         description: "Deodoran alami tanpa alkohol, efektif menahan bau badan sepanjang hari. Aman untuk kulit sensitif.", 
         imgText: "DEODORAN+HALAL",
+        imgUrl: "",
         mainBenefits: ["Tidak meninggalkan noda di baju.", "Mengontrol keringat berlebih.", "Aman untuk kulit ketiak sensitif."],
         composition: "Ekstrak Tawas Alami, Air Mawar, Essential Oil. Bebas Paraben dan Alkohol.",
         usage: "Gunakan setelah mandi. Tunggu kering sebelum berpakaian."
@@ -232,6 +247,7 @@ const horizontalProductsData = [
         pv: "7", 
         description: "Pengganti MSG, terbuat dari ekstrak jamur alami, rasa umami yang lezat untuk masakan.", 
         imgText: "KALDU+JAMUR",
+        imgUrl: "",
         mainBenefits: ["Pengganti penyedap rasa buatan.", "Aman untuk anak-anak.", "Rasa masakan lebih kaya dan alami."],
         composition: "Ekstrak Jamur Shiitake, Garam Laut, Gula Tebu. Bersertifikat Vegan.",
         usage: "Tambahkan 1 sendok teh pada setiap masakan berkuah atau tumisan."
@@ -244,6 +260,7 @@ const horizontalProductsData = [
         pv: "14", 
         description: "Minyak wangi murni, tanpa alkohol, aroma musk dan oud yang tahan lama dan elegan.", 
         imgText: "PARFUM+MUSK",
+        imgUrl: "",
         mainBenefits: ["Aroma maskulin/feminin premium.", "Tahan lama hingga 12 jam.", "Halal (non-alkohol)."],
         composition: "Minyak Atsiri Murni, Absolute Musk, Oud Oil. Bebas dari zat kimia berbahaya.",
         usage: "Oleskan di titik nadi (pergelangan tangan, leher) untuk proyeksi aroma maksimal."
@@ -256,6 +273,7 @@ const horizontalProductsData = [
         pv: "10", 
         description: "Masker lumpur dengan Charcoal aktif, membersihkan pori-pori secara mendalam, mencerahkan.", 
         imgText: "MASKER+CHARCOAL",
+        imgUrl: "",
         mainBenefits: ["Detoxifikasi kulit dan pori-pori.", "Mengurangi komedo dan jerawat.", "Kulit terasa lebih halus."],
         composition: "Bentonite Clay, Activated Charcoal Powder, Ekstrak Green Tea.",
         usage: "Gunakan 1-2 kali seminggu. Aplikasikan di wajah, diamkan 15 menit, bilas dengan air hangat."
@@ -268,6 +286,7 @@ const horizontalProductsData = [
         pv: "25", 
         description: "Celana Sirwal bahan katun tebal, nyaman, jahitan rapi, longgar dan tidak membentuk tubuh.", 
         imgText: "CELANA+SIRWAL",
+        imgUrl: "",
         mainBenefits: ["Sangat nyaman untuk aktivitas harian.", "Desain longgar sesuai syariat.", "Bahan tidak mudah robek."],
         composition: "Katun Twill Premium (tebal, tidak panas). Dilengkapi karet pinggang dan tali.",
         usage: "Gunakan untuk acara santai, kajian, atau kegiatan di luar rumah. Tersedia size M-XXL."
@@ -280,6 +299,7 @@ const horizontalProductsData = [
         pv: "6", 
         description: "Gula aren murni, higienis, cocok untuk kopi atau makanan penutup. Manis alami dan rendah glikemik.", 
         imgText: "GULA+AREN",
+        imgUrl: "",
         mainBenefits: ["Pemanis alami rendah glikemik.", "Aroma otentik dan kaya.", "Tahan lama di suhu ruang."],
         composition: "100% Nira Pohon Aren. Tanpa pengental dan pengawet.",
         usage: "Pengganti gula pasir untuk minuman, kue, dan topping dessert."
@@ -292,6 +312,7 @@ const horizontalProductsData = [
         pv: "4", 
         description: "Minyak telon untuk bayi dengan tambahan formula alami pengusir nyamuk. Hangat dan nyaman.", 
         imgText: "MINYAK+TELON",
+        imgUrl: "",
         mainBenefits: ["Menghangatkan tubuh bayi.", "Melindungi dari gigitan nyamuk.", "Aroma lembut, tidak menyengat."],
         composition: "Minyak Kayu Putih, Minyak Anis, Minyak Kelapa, Citronella Oil.",
         usage: "Oleskan pada perut, dada, dan punggung bayi setelah mandi."
@@ -304,6 +325,7 @@ const horizontalProductsData = [
         pv: "10", 
         description: "Lotion pelembab dengan Shea Butter, menutrisi kulit kering, aroma lembut dan Halal.", 
         imgText: "BODY+LOTION",
+        imgUrl: "",
         mainBenefits: ["Melembabkan hingga 24 jam.", "Mencerahkan kulit secara bertahap.", "Aroma menenangkan."],
         composition: "Shea Butter, Olive Extract, Vitamin E. Tanpa Paraben.",
         usage: "Gunakan setiap hari, terutama setelah mandi, pada seluruh tubuh."
@@ -316,6 +338,7 @@ const horizontalProductsData = [
         pv: "4", 
         description: "Sambal rumahan dengan resep tradisional, pedas mantap, tanpa pengawet buatan. Halal.", 
         imgText: "SAMBAL+PEDAS",
+        imgUrl: "",
         mainBenefits: ["Rasa otentik dan pedasnya pas.", "Siap santap kapan saja.", "Tahan hingga 3 bulan (segel)."],
         composition: "Cabai Segar, Bawang Merah, Bawang Putih, Minyak Nabati, Garam, Rempah Pilihan.",
         usage: "Sajikan sebagai pendamping lauk. Setelah dibuka, simpan di kulkas."
@@ -328,6 +351,7 @@ const horizontalProductsData = [
         pv: "9", 
         description: "Teh hijau kualitas ekspor, tinggi antioksidan, membantu metabolisme dan relaksasi.", 
         imgText: "TEH+HIJAU",
+        imgUrl: "",
         mainBenefits: ["Membantu pembakaran lemak (metabolisme).", "Sumber antioksidan kuat.", "Menenangkan pikiran."],
         composition: "100% Daun Teh Hijau Pilihan. Dikemas dalam kantong celup Food Grade.",
         usage: "Seduh 1 kantong teh dengan air panas (80°C) selama 3 menit. Minum 2 kali sehari."
@@ -340,6 +364,7 @@ const horizontalProductsData = [
         pv: "5", 
         description: "Sandal ringan berbahan EVA, cepat kering, anti slip, ideal untuk area wudhu.", 
         imgText: "SANDAL+WUDHU",
+        imgUrl: "",
         mainBenefits: ["Material EVA ringan dan nyaman.", "Desain anti slip, aman di area basah.", "Cepat kering."],
         composition: "Bahan EVA (Ethylene-Vinyl Acetate) berkualitas tinggi.",
         usage: "Khusus digunakan di kamar mandi/area wudhu. Cuci dengan sabun jika kotor."
@@ -352,6 +377,7 @@ const horizontalProductsData = [
         pv: "15", 
         description: "Suplemen Vitamin C dosis tinggi, membantu jaga daya tahan tubuh, bersertifikasi BPOM.", 
         imgText: "VITAMIN+C",
+        imgUrl: "",
         mainBenefits: ["Meningkatkan sistem kekebalan tubuh.", "Membantu penyerapan kolagen.", "Antioksidan seluler."],
         composition: "Ascorbic Acid (Vitamin C), Bahan Tambahan Farmasi. BPOM SD 12345678.",
         usage: "1 tablet per hari setelah makan. Jauhkan dari jangkauan anak-anak."
@@ -364,6 +390,7 @@ const horizontalProductsData = [
         pv: "12", 
         description: "Susu kambing etawa bubuk, kaya kalsium dan nutrisi, baik untuk tulang dan lambung.", 
         imgText: "SUSU+KAMBING",
+        imgUrl: "",
         mainBenefits: ["Kalsium tinggi untuk tulang.", "Lebih mudah dicerna dibanding susu sapi.", "Baik untuk penderita alergi susu sapi."],
         composition: "Susu Kambing Etawa Murni, Krimer Nabati. Diproses secara steril.",
         usage: "Larutkan 2 sendok makan ke dalam 200ml air hangat. Minum 2 kali sehari."
@@ -372,8 +399,7 @@ const horizontalProductsData = [
 
 
 // --- 2. PRODUK STICKY STACKING (Total 10 Item) ---
-// Perhatikan: consumerPrice & agentPrice HARUS ada "Rp" dan "Poin" di dalam string.
-
+// ... (Data stacking tetap sama, tapi saya tambahkan imgUrl: "..." agar konsisten)
 const stackingProductsData = [
     // SLIDE 1: DETERJEN
     { 
@@ -473,10 +499,12 @@ const stackingProductsData = [
 
 function createHorizontalCardHTML(data, index) {
     const formatPrice = (priceString) => {
-        // Asumsi formatnya sudah benar (contoh: 95.000)
         return priceString;
     };
     
+    // LOGIC BARU UNTUK GAMBAR
+    let imageUrl = data.imgUrl || `https://via.placeholder.com/300x330/DDDDDD/666666?text=${data.imgText}`;
+
     // Konversi array benefits ke list HTML
     const benefitsList = data.mainBenefits ? data.mainBenefits.map(item => `<li>${item}</li>`).join('') : '<li>Detail manfaat belum tersedia.</li>';
     
@@ -484,7 +512,7 @@ function createHorizontalCardHTML(data, index) {
         <div class="flex-shrink-0 w-[80vw] sm:w-[50vw] lg:w-[40vw] xl:w-[30vw] h-[60vh] snap-center cursor-pointer" 
             id="card-wrapper-${index}" data-original-width-px="">
             <div class="bg-clean-card rounded-3xl p-6 md:p-8 product-card-detail shadow-xl transition-all duration-300 hover:scale-[1.01] hover:shadow-clean-text/10 border border-clean-subtext/10" id="card-detail-${index}">
-                <div class="product-card-image" style="background-image: url('https://via.placeholder.com/300x330/DDDDDD/666666?text=${data.imgText}'); background-size: cover; background-position: center;"></div>
+                <div class="product-card-image" style="background-image: url('${imageUrl}'); background-size: cover; background-position: center;"></div>
                 <div class="product-info">
                     <h3 class="text-2xl font-bold text-clean-text truncate">${data.title}</h3>
                     <div class="info-content-wrapper">
@@ -530,7 +558,7 @@ function createStackingSlideHTML(data, index) {
     return `
         <div class="stacking-product-slide" data-name="${data.title}">
             <div class="stacking-product-card-view" id="stack-view-${index}">
-                <div class="stacking-product-card-image" style="background-image: url('${data.img}');"></div>
+                <div class="stacking-product-card-image" style="background-image: url('${data.img}'); background-size: cover; background-position: center;"></div>
                 <div class="stacking-product-info-detail">
                     <div class="detail-content w-2/3">
                         <h3 class="text-3xl font-bold text-clean-text truncate">${data.title}</h3>
@@ -545,11 +573,11 @@ function createStackingSlideHTML(data, index) {
                     <div class="stacking-product-price-grid w-1/3">
                         <div class="price-item">
                             <span class="text-xs text-clean-subtext block">Harga Konsumen</span>
-                            <span class="text-lg font-bold text-clean-text">${data.consumerPrice}</span>
+                            <span class="text-xl font-bold text-clean-text">${data.consumerPrice}</span>
                         </div>
                         <div class="price-item">
                             <span class="text-xs text-clean-subtext block">Harga Agen</span>
-                            <span class="text-lg font-extrabold text-clean-text">${data.agentPrice}</span>
+                            <span class="text-xl font-extrabold text-clean-text">${data.agentPrice}</span>
                         </div>
                         <div class="price-item points">
                             <span class="text-xs text-clean-subtext block">Poin (PV)</span>
@@ -565,7 +593,7 @@ function createStackingSlideHTML(data, index) {
 function generateHorizontalCards() {
     const container = document.getElementById('card-scroll-container');
     
-    // Hapus semua kecuali penutup akhir (w-8 md:w-24 h-1)
+    // Amankan filler end card (w-8 md:w-24 h-1)
     const fillerEnd = container.lastElementChild; 
     container.innerHTML = ''; 
 
@@ -577,6 +605,7 @@ function generateHorizontalCards() {
     
     container.innerHTML = html;
     container.appendChild(fillerEnd); // Masukkan penutup akhir lagi
+    window.initCardExpansion(); // Panggil ulang init setelah DOM diperbarui
 }
 
 function generateStackingSlides() {
@@ -628,7 +657,7 @@ function setupCardExpansion() {
     const originalWidthData = new Map();
 
     function getCardWrappers() {
-        return Array.from(scrollContainer.children).filter(el => !el.classList.contains('h-1') && el.id.startsWith('card-wrapper-'));
+        return Array.from(scrollContainer.children).filter(el => !el.classList.contains('h-1'));
     }
 
     function getOriginalWidthData(cardElement) {
@@ -733,7 +762,14 @@ function setupCardExpansion() {
         getCardWrappers().forEach(card => getOriginalWidthData(card));
     });
 
-    window.initCardExpansion(); 
+    window.initCardExpansion = function() { // Re-define agar bisa dipanggil setelah generateCards
+        cardWrappers = getCardWrappers();
+        cardWrappers.forEach(card => {
+            getOriginalWidthData(card); 
+            card.removeEventListener('click', handleCardClick);
+            card.addEventListener('click', handleCardClick);
+        });
+    };
 }
 
 function setupCardScrolling() {
@@ -811,7 +847,8 @@ function setupCtaAnimation() {
 
 function setupNewStackingAnimation() {
     const section = document.getElementById("new-stacking-section");
-    const slides = gsap.utils.toArray(".stacking-product-slide");
+    // Ambil slide setelah digenerate
+    const slides = gsap.utils.toArray("#stacking-scroll-container .stacking-product-slide");
     const totalSlides = slides.length; 
     
     if (totalSlides === 0 || !section) return;
@@ -912,11 +949,10 @@ function setupTestimonialsCarousel() {
         const start = index * v;
         const end = Math.min(start + v - 1, cards.length - 1);
         cards.forEach((el, i) => {
-            const active = i >= start && i <= end;
             gsap.to(el, {
-                scale: active ? 1 : 0.97,
-                opacity: active ? 1 : 0.7,
-                boxShadow: active ? '0 20px 60px rgba(0,0,0,0.12)' : '0 10px 30px rgba(0,0,0,0.06)',
+                scale: (i >= start && i < start + v) ? 1 : 0.97,
+                opacity: (i >= start && i < start + v) ? 1 : 0.7,
+                boxShadow: (i >= start && i < start + v) ? '0 20px 60px rgba(0,0,0,0.12)' : '0 10px 30px rgba(0,0,0,0.06)',
                 duration: 0.35,
                 ease: 'power2.out'
             });
@@ -930,10 +966,10 @@ function setupTestimonialsCarousel() {
         const v = visibleCount();
         const cardW = cards[0].getBoundingClientRect().width;
         const gap = parseFloat(getComputedStyle(inner).gap || '28');
-        const step = (cardW + gap) * v;
-        const x = index * step * -1;
-
-        gsap.to(inner, { x, duration: 0.55, ease: 'power2.out' });
+        // Calculate the actual scroll distance based on one card width + gap, multiplied by index
+        const scrollDistance = cards[index * v] ? cards[index * v].offsetLeft - cards[0].offsetLeft : 0;
+        
+        gsap.to(inner, { x: -scrollDistance, duration: 0.55, ease: 'power2.out' });
         updateDots();
         spotlight();
         updateButtons();
@@ -1002,9 +1038,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFloatingText();
     setupHeroScrollAnimation();
     
-    // Perlu diinisialisasi ulang setelah konten horizontal dibuat
+    // Inisialisasi ulang setelah konten horizontal dibuat
     setupCardScrolling(); 
-    setupCardExpansion();
+    setupCardExpansion(); // Fungsi ini sekarang memanggil initCardExpansion() di dalamnya
     
     setupCtaAnimation(); 
     setupNewStackingAnimation(); 
